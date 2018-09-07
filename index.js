@@ -1,17 +1,13 @@
 'use strict';
 
 const AWS = require('aws-sdk');
- 
-//const DIR = "./system/"
+AWS.config.loadFromPath( "./.ymuto_config.json" ); 
 
-//AWS.config.loadFromPath(DIR + 'credentials.json');
-AWS.config.update( { region : 'ap-northeast-1'} );
- 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
 let _isLogger = false;
 
-let print = ( params ) {
+let print = ( params ) => {
   if ( _isLogger ) {
     console.log( JSON.stringify( params ) );
   };
@@ -20,20 +16,6 @@ let print = ( params ) {
 exports.setIsLogger = ( isLogger ) => {
   _isLogger = isLogger
 };
-
-exports.setUpRegion = ( region ) => {
-  AWS.config.update( { region: region } );
-};
-
-exports.config = ( configFilePath ) => {
-  AWS.config.loadFromPath ( configFilePath );
-};
-
-exports.setUp = ( configFilePath, region ) => {
-  exports.setUpRegion( region );
-  exports.config ( configFilePath );
-};
-
 
 exports.get = ( params ) => {
   return dynamo.get( params ).promise().then( ( v ) => {
