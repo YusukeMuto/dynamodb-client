@@ -1,8 +1,11 @@
 {
   "name": "ymuto-dynamodb-client",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.4",
+  "description": "dynamodb-client",
   "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.309.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
